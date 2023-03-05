@@ -1,0 +1,4 @@
+.stack-work/
+*~
+.vscode/
+AoC18-Haskell.cabal
