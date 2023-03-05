@@ -20,6 +20,7 @@ description: Please see the README on GitHub at <https://github.com/Riddarvid/Ao
 
 dependencies:
   - base >= 4.7 && < 5
+  - containers >= 0.6.6
 
 ghc-options:
   - -Wall
@@ -33,7 +34,10 @@ ghc-options:
   - -Wredundant-constraints
 
 library:
-  source-dirs: src
+  source-dirs:
+    - src
+    - src/days
+    - src/utils
 
 executables:
   AoC18-Haskell-exe:
