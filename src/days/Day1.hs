@@ -1,10 +1,10 @@
 module Day1 (solve) where
 
-import Solution (Solution)
+import Solution (Solver)
 import Data.Set (Set)
 import qualified Data.Set as Set
 
-solve :: String -> Solution
+solve :: Solver
 solve input = (show part1, show part2)
   where
     frequencies = parse input

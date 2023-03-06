@@ -1,12 +1,12 @@
 module Day2 (solve) where
-import Solution (Solution)
+import Solution (Solver)
 
 import Data.Map (Map)
 import qualified Data.Map as Map
 import Data.Foldable (find)
 import MapUtils (incOrInsert)
 
-solve :: String -> Solution
+solve :: Solver
 solve input = (show part1, part2)
   where
     ids = lines input
