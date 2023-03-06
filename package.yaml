@@ -21,6 +21,8 @@ description: Please see the README on GitHub at <https://github.com/Riddarvid/Ao
 dependencies:
   - base >= 4.7 && < 5
   - containers >= 0.6.6
+  - parsec >= 3.1.15.0
+  - regex-pcre >= 0.95.0.0
 
 ghc-options:
   - -Wall

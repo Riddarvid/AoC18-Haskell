@@ -4,6 +4,7 @@ import Solution (Solution)
 import Data.Map (Map)
 import qualified Data.Map as Map
 import Data.Foldable (find)
+import MapUtils (incOrInsert)
 
 solve :: String -> Solution
 solve input = (show part1, part2)
@@ -27,11 +28,6 @@ containsN n str = not . Map.null $ Map.filter (== n) letterCount
 
 countLetters :: String -> Map Char Int
 countLetters = foldr incOrInsert Map.empty
-
-incOrInsert :: Char -> Map Char Int -> Map Char Int
-incOrInsert c letterCount
-  | Map.member c letterCount = Map.adjust (+ 1) c letterCount
-  | otherwise = Map.insert c 1 letterCount
 
 -- Part2
 
