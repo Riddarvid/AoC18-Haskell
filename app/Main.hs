@@ -2,9 +2,10 @@ module Main (main) where
 
 import Solution (Solution)
 import Day1 (solve)
+import Day2 (solve)
 
 day :: Int
-day = 1
+day = 2
 
 main :: IO ()
 main = do
@@ -13,7 +14,7 @@ main = do
   printSolution solution
 
 solvers :: [String -> Solution]
-solvers = [Day1.solve]
+solvers = [Day1.solve, Day2.solve]
 
 printSolution :: Solution -> IO ()
 printSolution (part1, part2) = do
