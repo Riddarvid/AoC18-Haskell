@@ -4,9 +4,10 @@ import Solution (Solution)
 import Day1 (solve)
 import Day2 (solve)
 import Day3 (solve)
+import Day4 (solve)
 
 day :: Int
-day = 3
+day = 4
 
 main :: IO ()
 main = do
@@ -15,7 +16,7 @@ main = do
   printSolution solution
 
 solvers :: [String -> Solution]
-solvers = [Day1.solve, Day2.solve, Day3.solve]
+solvers = [Day1.solve, Day2.solve, Day3.solve, Day4.solve]
 
 printSolution :: Solution -> IO ()
 printSolution (part1, part2) = do
