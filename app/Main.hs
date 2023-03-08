@@ -8,9 +8,10 @@ import Day4 (solve)
 import Day5 (solve)
 import Day6 (solve)
 import Day7 (solve)
+import Day8 (solve)
 
 day :: Int
-day = 7
+day = 8
 
 main :: IO ()
 main = do
@@ -19,7 +20,9 @@ main = do
   printSolution solution
 
 solvers :: [String -> Solution]
-solvers = [Day1.solve, Day2.solve, Day3.solve, Day4.solve, Day5.solve, Day6.solve, Day7.solve]
+solvers = [
+  Day1.solve, Day2.solve, Day3.solve, Day4.solve, Day5.solve, Day6.solve, 
+  Day7.solve, Day8.solve]
 
 printSolution :: Solution -> IO ()
 printSolution (part1, part2) = do
