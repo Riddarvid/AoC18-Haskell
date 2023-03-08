@@ -1,3 +1,5 @@
+{-# LANGUAGE TupleSections, InstanceSigs #-}
+
 module Day4 (solve) where
 import Solution (Solver)
 
