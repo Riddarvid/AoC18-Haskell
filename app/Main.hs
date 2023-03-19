@@ -10,9 +10,10 @@ import Day6 (solve)
 import Day7 (solve)
 import Day8 (solve)
 import Day9alt (solve)
+import Day10 (solve)
 
 day :: Int
-day = 9
+day = 10
 
 main :: IO ()
 main = do
@@ -23,7 +24,7 @@ main = do
 solvers :: [String -> Solution]
 solvers = [
   Day1.solve, Day2.solve, Day3.solve, Day4.solve, Day5.solve, Day6.solve, 
-  Day7.solve, Day8.solve, Day9alt.solve]
+  Day7.solve, Day8.solve, Day9alt.solve, Day10.solve]
 
 printSolution :: Solution -> IO ()
 printSolution (part1, part2) = do
