@@ -6,10 +6,11 @@ import Geometry (Point, point, Vector, vector, translate, findDimensions, showPo
 import Parsing (getNegInts)
 
 solve :: Solver
-solve input = (part1, "")
+solve input = (part1, show part2)
   where
     points = parse input
     part1 = solve1 points
+    part2 = solve2 points
 
 -- Parsing
 
@@ -35,18 +36,28 @@ solve1 startPoints = concatMap (\conf -> showConf conf ++ "\n") mins
     configs = iterate (map move) startPoints
     mins = findClosest configs
 
+-- Part 2
+
+solve2 :: [SkyPoint] -> Int
+solve2 startPoints = length discarded
+  where
+    confs = iterate (map move) startPoints
+    (discarded, _) = splitWhileDec confs
+
 findClosest :: [[SkyPoint]] -> [[SkyPoint]]
 findClosest confs = takeWhile ((==) minDist . distance) confs'
   where
-    confs' = dropWhileDec confs
+    (_, confs') = splitWhileDec confs
     minDist = distance $ head confs'
 
-dropWhileDec :: [[SkyPoint]] -> [[SkyPoint]]
-dropWhileDec [] = []
-dropWhileDec [conf] = [conf]
-dropWhileDec xs@(conf1 : conf2 : confs)
-  | distance conf1 > distance conf2 = dropWhileDec (conf2 : confs)
-  | otherwise = xs
+splitWhileDec :: [[SkyPoint]] -> ([[SkyPoint]], [[SkyPoint]])
+splitWhileDec [] = ([], [])
+splitWhileDec [conf] = ([conf], [])
+splitWhileDec xs@(conf1 : conf2 : confs)
+  | distance conf1 > distance conf2 = (conf1 : taken, dropped)
+  | otherwise = ([], xs)
+  where
+    (taken, dropped) = splitWhileDec (conf2 : confs)
 
 move :: SkyPoint -> SkyPoint
 move (SP p v) = SP (translate p v) v
