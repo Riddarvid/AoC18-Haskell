@@ -1,19 +1,20 @@
 module Main (main) where
 
-import Solution (Solution)
-import Day1 (solve)
-import Day2 (solve)
-import Day3 (solve)
-import Day4 (solve)
-import Day5 (solve)
-import Day6 (solve)
-import Day7 (solve)
-import Day8 (solve)
-import Day9alt (solve)
-import Day10 (solve)
+import Utils.Solution (Solution)
+import Days.Day1 as Day1
+import Days.Day2 as Day2
+import Days.Day3 as Day3
+import Days.Day4 as Day4
+import Days.Day5 as Day5
+import Days.Day6 as Day6
+import Days.Day7 as Day7
+import Days.Day8 as Day8
+import Days.Day9.Day9Sequence as Day9
+import Days.Day10 as Day10
+import Days.Day11 as Day11
 
 day :: Int
-day = 10
+day = 9
 
 main :: IO ()
 main = do
@@ -24,7 +25,7 @@ main = do
 solvers :: [String -> Solution]
 solvers = [
   Day1.solve, Day2.solve, Day3.solve, Day4.solve, Day5.solve, Day6.solve, 
-  Day7.solve, Day8.solve, Day9alt.solve, Day10.solve]
+  Day7.solve, Day8.solve, Day9.solve, Day10.solve, Day11.solve]
 
 printSolution :: Solution -> IO ()
 printSolution (part1, part2) = do

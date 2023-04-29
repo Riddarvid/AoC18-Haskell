@@ -1,5 +1,5 @@
-module Day5 (solve) where
-import Solution (Solver)
+module Days.Day5 (solve) where
+import Utils.Solution (Solver)
 import Data.Char (toLower, isLower, isUpper)
 
 solve :: Solver

@@ -40,8 +40,6 @@ ghc-options:
 library:
   source-dirs:
     - src
-    - src/days
-    - src/utils
 
 executables:
   AoC18-Haskell-exe:

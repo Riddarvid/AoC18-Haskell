@@ -1,5 +1,5 @@
 {-# LANGUAGE InstanceSigs #-}
-module Graphs (shortestPathBFS, shortestPathBFS', shortestDistanceBFSCond, nodesFromPath, distancesBFS, reachableBFS, reachableBFSLimit, Edge, Path, BFSOptions (BFSOptions, pruneFun, keepVisited)) where
+module Utils.Graphs (shortestPathBFS, shortestPathBFS', shortestDistanceBFSCond, nodesFromPath, distancesBFS, reachableBFS, reachableBFSLimit, Edge, Path, BFSOptions (BFSOptions, pruneFun, keepVisited)) where
 import           Data.Foldable (toList)
 import           Data.Map      (Map, (!))
 import qualified Data.Map      as Map

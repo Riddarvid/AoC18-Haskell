@@ -1,5 +1,5 @@
-module Day8 (solve) where
-import Solution (Solver)
+module Days.Day8 (solve) where
+import Utils.Solution (Solver)
 import Control.Monad.State (StateT, evalStateT, MonadState (get, put))
 import Control.Monad.Error.Class (MonadError (throwError))
 

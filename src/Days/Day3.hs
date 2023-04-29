@@ -1,10 +1,10 @@
-module Day3 (solve) where
-import Solution (Solver)
-import Parsing (getInts)
+module Days.Day3 (solve) where
+import Utils.Solution (Solver)
+import Utils.Parsing (getInts)
 
 import Data.Map (Map, (!))
 import qualified Data.Map as Map
-import MapUtils (incOrInsert)
+import Utils.MapUtils (incOrInsert)
 import Data.Maybe (fromJust)
 import Data.Foldable (find)
 

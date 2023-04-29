@@ -1,13 +1,13 @@
 {-# LANGUAGE TupleSections, InstanceSigs #-}
 
-module Day4 (solve) where
-import Solution (Solver)
+module Days.Day4 (solve) where
+import Utils.Solution (Solver)
 
 import Data.Map (Map)
 import qualified Data.Map as Map
 import Data.Set (Set)
 import qualified Data.Set as Set
-import Parsing (getInts)
+import Utils.Parsing (getInts)
 import Data.List (maximumBy, sortOn)
 import Data.Ord (comparing)
 

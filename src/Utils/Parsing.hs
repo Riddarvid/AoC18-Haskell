@@ -1,4 +1,4 @@
-module Parsing (getInts, getIntegers, getNegInts) where
+module Utils.Parsing (getInts, getIntegers, getNegInts) where
 
 import Text.Regex.PCRE (AllTextMatches (getAllTextMatches), (=~))
 

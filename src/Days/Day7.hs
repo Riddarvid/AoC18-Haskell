@@ -1,7 +1,7 @@
 {-# LANGUAGE TupleSections #-}
 
-module Day7 (solve) where
-import Solution (Solver)
+module Days.Day7 (solve) where
+import Utils.Solution (Solver)
 import Data.Set (Set, (\\))
 import Data.Map (Map, (!))
 import qualified Data.Map as Map

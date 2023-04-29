@@ -1,4 +1,4 @@
-module Solution (Solution, Solver) where
+module Utils.Solution (Solution, Solver) where
 
 type Solution = (String, String)
 

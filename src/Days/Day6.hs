@@ -1,12 +1,12 @@
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 {-# HLINT ignore "Use head" #-}
-module Day6 (solve) where
-import Solution (Solver)
-import Parsing (getInts)
+module Days.Day6 (solve) where
+import Utils.Solution (Solver)
+import Utils.Parsing (getInts)
 
 import Data.Set (Set)
 import qualified Data.Set as Set
-import Graphs (reachableBFSLimit, BFSOptions (BFSOptions, keepVisited, pruneFun), reachableBFS)
+import Utils.Graphs (reachableBFSLimit, BFSOptions (BFSOptions, keepVisited, pruneFun), reachableBFS)
 import Data.Foldable (minimumBy, maximumBy)
 import Data.Ord (comparing)
 

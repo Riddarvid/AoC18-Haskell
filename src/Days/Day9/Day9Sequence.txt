@@ -1,0 +1,8 @@
+Execution time ~ 27s.
+
+This implementation utilizes Data.Sequence. This data structure represents a sequence via
+a tree.
+
+The advantages of using Seq is that we can do arbitrary insertions/deletions in log n time.
+
+Since we do n insertions/deletions, we arrive at an n log n solution.

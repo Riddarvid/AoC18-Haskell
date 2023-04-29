@@ -1,10 +1,10 @@
-module Day2 (solve) where
-import Solution (Solver)
+module Days.Day2 (solve) where
+import Utils.Solution (Solver)
 
 import Data.Map (Map)
 import qualified Data.Map as Map
 import Data.Foldable (find)
-import MapUtils (incOrInsert)
+import Utils.MapUtils (incOrInsert)
 
 solve :: Solver
 solve input = (show part1, part2)

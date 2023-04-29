@@ -1,9 +1,9 @@
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 {-# HLINT ignore "Use head" #-}
-module Day10 (solve) where
-import Solution (Solver)
-import Geometry (Point, point, Vector, vector, translate, findDimensions, showPoints)
-import Parsing (getNegInts)
+module Days.Day10 (solve) where
+import Utils.Solution (Solver)
+import Utils.Geometry (Point, point, Vector, vector, translate, findDimensions, showPoints)
+import Utils.Parsing (getNegInts)
 
 solve :: Solver
 solve input = (part1, show part2)

@@ -1,7 +1,8 @@
 {-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE ExistentialQuantification #-}
+{-# LANGUAGE InstanceSigs #-}
 
-module Geometry (
+module Utils.Geometry (
   Point,
   point,
   pX,
@@ -27,6 +28,10 @@ data Point a = (Num a) => P {
 
 deriving instance Eq a => Eq (Point a)
 deriving instance Ord a => Ord (Point a)
+
+instance (Show a) => Show (Point a) where
+  show :: Point a -> String
+  show p = "(" ++ show (pX p) ++ ", " ++ show (pY p) ++ ")"
 
 point :: Num a => a -> a -> Point a
 point = P

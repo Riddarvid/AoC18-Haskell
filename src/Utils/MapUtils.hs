@@ -1,4 +1,4 @@
-module MapUtils (incOrInsert) where
+module Utils.MapUtils (incOrInsert) where
 
 import Data.Map (Map)
 import qualified Data.Map as Map
