@@ -1,5 +1,5 @@
 module Days.Day5 (solve) where
-import Utils.Solution (Solver)
+import AoCUtils.Days (Solver)
 import Data.Char (toLower, isLower, isUpper)
 
 solve :: Solver

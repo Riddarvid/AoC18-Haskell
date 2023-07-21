@@ -6,7 +6,7 @@ import qualified Data.IntMap           as IM
 import           Days.Day9.Circle      (Circle)
 import qualified Days.Day9.Circle      as Circle
 import           Days.Day9.FocusCircle (FocusCircle)
-import           Utils.Solution        (Solver)
+import           AoCUtils.Days        (Solver)
 
 solve :: Solver
 solve input = (show part1, show part2)

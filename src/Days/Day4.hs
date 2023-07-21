@@ -1,7 +1,7 @@
 {-# LANGUAGE TupleSections, InstanceSigs #-}
 
 module Days.Day4 (solve) where
-import Utils.Solution (Solver)
+import AoCUtils.Days (Solver)
 
 import Data.Map (Map)
 import qualified Data.Map as Map

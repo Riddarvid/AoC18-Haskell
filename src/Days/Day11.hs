@@ -1,5 +1,5 @@
 module Days.Day11 (solve, powerLevel) where
-import Utils.Solution (Solver)
+import AoCUtils.Days (Solver)
 import Data.Map (Map, (!))
 import qualified Data.Map as Map
 import Utils.Geometry (Point (pX, pY), point, vector, translate)

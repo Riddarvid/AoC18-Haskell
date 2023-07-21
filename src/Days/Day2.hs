@@ -1,5 +1,5 @@
 module Days.Day2 (solve) where
-import Utils.Solution (Solver)
+import AoCUtils.Days (Solver)
 
 import Data.Map (Map)
 import qualified Data.Map as Map

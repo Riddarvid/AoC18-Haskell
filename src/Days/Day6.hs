@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 {-# HLINT ignore "Use head" #-}
 module Days.Day6 (solve) where
-import Utils.Solution (Solver)
+import AoCUtils.Days (Solver)
 import Utils.Parsing (getInts)
 
 import Data.Set (Set)

@@ -1,6 +1,6 @@
 module Days.Day1 (solve) where
 
-import Utils.Solution (Solver)
+import AoCUtils.Days (Solver)
 import Data.Set (Set)
 import qualified Data.Set as Set
 

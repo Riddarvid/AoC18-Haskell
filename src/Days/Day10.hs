@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 {-# HLINT ignore "Use head" #-}
 module Days.Day10 (solve) where
-import Utils.Solution (Solver)
+import AoCUtils.Days (Solver)
 import Utils.Geometry (Point, point, Vector, vector, translate, findDimensions, showPoints)
 import Utils.Parsing (getNegInts)
 
