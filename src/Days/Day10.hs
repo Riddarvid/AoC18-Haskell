@@ -1,10 +1,12 @@
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 {-# HLINT ignore "Use head" #-}
+{-# LANGUAGE InstanceSigs #-}
 module Days.Day10 (solve) where
-import           AoCUtils.Days  (Solver)
-import           AoCUtils.Regex (parseSignedInts)
-import           Utils.Geometry (Point, Vector, findDimensions, point,
-                                 showPoints, translate, vector)
+import           AoCUtils.Days     (Solver)
+import           AoCUtils.Geometry (Point (moveBy), Point2 (P2), Vector2,
+                                    findDimensions)
+import           AoCUtils.Regex    (parseSignedInts)
+import           AoCUtils.Show     (showPoints)
 
 solve :: Solver
 solve input = (part1, show part2)
@@ -15,13 +17,17 @@ solve input = (part1, show part2)
 
 -- Parsing
 
-data SkyPoint = SP (Point Int) (Vector Int)
+data SkyPoint = SP (Point2 Int) (Vector2 Int)
+
+instance Show SkyPoint where
+  show :: SkyPoint -> String
+  show (SP p _) = show p
 
 parse :: String -> [SkyPoint]
 parse = map parseInput . lines
 
 parseInput :: String -> SkyPoint
-parseInput str = SP (point x y) (vector dx dy)
+parseInput str = SP (P2 x y) (P2 dx dy)
   where
     tokens = parseSignedInts str
     x = tokens !! 0
@@ -61,13 +67,13 @@ splitWhileDec xs@(conf1 : conf2 : confs)
     (taken, dropped) = splitWhileDec (conf2 : confs)
 
 move :: SkyPoint -> SkyPoint
-move (SP p v) = SP (translate p v) v
+move (SP p v) = SP (moveBy p v) v
 
 distance :: [SkyPoint] -> Int
 distance skyPoints = (maxX - minX) * (maxY - minY)
   where
     points = map (\(SP p _) -> p) skyPoints
-    (minX, maxX, minY, maxY) = findDimensions points
+    (minX, minY, maxX, maxY) = findDimensions points
 
 showConf :: [SkyPoint] -> String
 showConf skyPoints = showPoints points
