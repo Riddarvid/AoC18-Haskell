@@ -1,15 +1,16 @@
-{-# LANGUAGE TupleSections, InstanceSigs #-}
+{-# LANGUAGE InstanceSigs  #-}
+{-# LANGUAGE TupleSections #-}
 
 module Days.Day4 (solve) where
-import AoCUtils.Days (Solver)
+import           AoCUtils.Days  (Solver)
 
-import Data.Map (Map)
-import qualified Data.Map as Map
-import Data.Set (Set)
-import qualified Data.Set as Set
-import Utils.Parsing (getInts)
-import Data.List (maximumBy, sortOn)
-import Data.Ord (comparing)
+import           AoCUtils.Regex (parseUnsignedInts)
+import           Data.List      (maximumBy, sortOn)
+import           Data.Map       (Map)
+import qualified Data.Map       as Map
+import           Data.Ord       (comparing)
+import           Data.Set       (Set)
+import qualified Data.Set       as Set
 
 solve :: Solver
 solve input = (show part1, show part2)
@@ -73,7 +74,7 @@ aggregateGuards = mapToGuards . foldr addShift Map.empty
 addShift :: Shift -> Map Int [Shift] -> Map Int [Shift]
 addShift shift@(Shift id' _) guardMap = case Map.lookup id' guardMap of
   Just shifts -> Map.insert id' (shift : shifts) guardMap
-  Nothing -> Map.insert id' [shift] guardMap
+  Nothing     -> Map.insert id' [shift] guardMap
 
 mapToGuards :: Map Int [Shift] -> [Guard]
 mapToGuards = map (uncurry Guard) . Map.toList
@@ -98,7 +99,7 @@ getAsleep _ = error "Asleep should always have a matching wake"
 
 isWakeSleep :: Entry -> Bool
 isWakeSleep (Entry _ _ (Start _)) = False
-isWakeSleep _ = True
+isWakeSleep _                     = True
 
 timeToList :: Entry -> [Int]
 timeToList (Entry (Date year month day) (Time hour minute) _) = [year, month, day, hour, minute]
@@ -108,7 +109,7 @@ parseEntry str
   | length tokens == 5 = Entry date time action
   | otherwise = Entry date time (Start id')
   where
-    tokens = getInts str
+    tokens = parseUnsignedInts str
     date = Date (head tokens) (tokens !! 1) (tokens !! 2)
     time = Time (tokens !! 3) (tokens !! 4)
     id' = tokens !! 5
@@ -150,8 +151,8 @@ instance Show Date where
 instance Show Action where
   show :: Action -> String
   show (Start id') = "Guard #" ++ show id' ++ " begins shift"
-  show Wake = "wakes up"
-  show Sleep = "falls asleep"
+  show Wake        = "wakes up"
+  show Sleep       = "falls asleep"
 
 instance Show Shift where
   show :: Shift -> String

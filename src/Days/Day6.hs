@@ -1,14 +1,15 @@
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 {-# HLINT ignore "Use head" #-}
 module Days.Day6 (solve) where
-import AoCUtils.Days (Solver)
-import Utils.Parsing (getInts)
+import           AoCUtils.Days  (Solver)
 
-import Data.Set (Set)
-import qualified Data.Set as Set
-import Utils.Graphs (reachableBFSLimit, BFSOptions (BFSOptions, keepVisited, pruneFun), reachableBFS)
-import Data.Foldable (minimumBy, maximumBy)
-import Data.Ord (comparing)
+import           AoCUtils.Regex (parseUnsignedInts)
+import           Data.Foldable  (maximumBy, minimumBy)
+import           Data.Ord       (comparing)
+import           Data.Set       (Set)
+import qualified Data.Set       as Set
+import           Utils.Graphs   (BFSOptions (BFSOptions, keepVisited, pruneFun),
+                                 reachableBFS, reachableBFSLimit)
 
 type Pos = (Int, Int)
 
@@ -24,7 +25,7 @@ solve input = (show part1, show part2)
 parseCoord :: String -> Pos
 parseCoord str = (tokens !! 0, tokens !! 1)
   where
-    tokens = getInts str
+    tokens = parseUnsignedInts str
 
 -- Part 1
 

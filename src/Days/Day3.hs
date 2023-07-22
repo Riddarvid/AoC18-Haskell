@@ -1,20 +1,20 @@
 module Days.Day3 (solve) where
-import AoCUtils.Days (Solver)
-import Utils.Parsing (getInts)
 
-import Data.Map (Map, (!))
-import qualified Data.Map as Map
-import Utils.MapUtils (incOrInsert)
-import Data.Maybe (fromJust)
-import Data.Foldable (find)
+import           AoCUtils.Days  (Solver)
+import           AoCUtils.Regex (parseUnsignedInts)
+import           Data.Foldable  (find)
+import           Data.Map       (Map, (!))
+import qualified Data.Map       as Map
+import           Data.Maybe     (fromJust)
 
 type Pos = (Int, Int)
 
-data Claim = Claim {
-  cId :: Int,
-  cPos :: Pos,
-  cArea :: (Int, Int)
-} deriving Show
+data Claim = Claim
+  { cId   :: Int,
+    cPos  :: Pos,
+    cArea :: (Int, Int)
+  }
+  deriving (Show)
 
 solve :: Solver
 solve input = (show part1, show part2)
@@ -31,7 +31,7 @@ parseInput = map parseClaim . lines
 parseClaim :: String -> Claim
 parseClaim str = Claim {cId = id', cPos = pos, cArea = area}
   where
-    tokens = getInts str
+    tokens = parseUnsignedInts str
     id' = head tokens
     pos = (tokens !! 1, tokens !! 2)
     area = (tokens !! 3, tokens !! 4)
@@ -42,7 +42,12 @@ getOverlaps :: [Claim] -> Int
 getOverlaps = Map.size . Map.filter (> 1) . claimMap
 
 claimMap :: [Claim] -> Map Pos Int
-claimMap = foldr (\claim posMap -> foldr incOrInsert posMap (positions claim)) Map.empty
+claimMap =
+  foldr
+    ( \claim posMap ->
+        foldr (\c -> Map.insertWith (+) c 1) posMap (positions claim)
+    )
+    Map.empty
 
 positions :: Claim -> [Pos]
 positions claim = [(x, y) | x <- [posX .. posX + width - 1], y <- [posY .. posY + height - 1]]
@@ -59,7 +64,6 @@ findNoOverlap claims = cId $ fromJust $ find (noOverlap posMap) claims
 
 noOverlap :: Map Pos Int -> Claim -> Bool
 noOverlap posMap claim = all (\pos -> posMap ! pos == 1) $ positions claim
-
 
 {- Fancy parsing
 parseClaim :: String -> Claim

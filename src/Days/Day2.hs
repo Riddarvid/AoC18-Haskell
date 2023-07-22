@@ -1,10 +1,9 @@
 module Days.Day2 (solve) where
-import AoCUtils.Days (Solver)
 
+import AoCUtils.Days (Solver)
+import Data.Foldable (find)
 import Data.Map (Map)
 import qualified Data.Map as Map
-import Data.Foldable (find)
-import Utils.MapUtils (incOrInsert)
 
 solve :: Solver
 solve input = (show part1, part2)
@@ -27,7 +26,7 @@ containsN n str = not . Map.null $ Map.filter (== n) letterCount
     letterCount = countLetters str
 
 countLetters :: String -> Map Char Int
-countLetters = foldr incOrInsert Map.empty
+countLetters = foldr (\c -> Map.insertWith (+) c 1) Map.empty
 
 -- Part2
 

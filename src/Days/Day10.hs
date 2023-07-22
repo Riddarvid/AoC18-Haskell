@@ -1,9 +1,10 @@
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 {-# HLINT ignore "Use head" #-}
 module Days.Day10 (solve) where
-import AoCUtils.Days (Solver)
-import Utils.Geometry (Point, point, Vector, vector, translate, findDimensions, showPoints)
-import Utils.Parsing (getNegInts)
+import           AoCUtils.Days  (Solver)
+import           AoCUtils.Regex (parseSignedInts)
+import           Utils.Geometry (Point, Vector, findDimensions, point,
+                                 showPoints, translate, vector)
 
 solve :: Solver
 solve input = (part1, show part2)
@@ -22,7 +23,7 @@ parse = map parseInput . lines
 parseInput :: String -> SkyPoint
 parseInput str = SP (point x y) (vector dx dy)
   where
-    tokens = getNegInts str
+    tokens = parseSignedInts str
     x = tokens !! 0
     y = tokens !! 1
     dx = tokens !! 2
