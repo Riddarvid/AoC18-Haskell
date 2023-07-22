@@ -1,36 +1,45 @@
 {-# LANGUAGE InstanceSigs #-}
+module Days.Day9.FocusCircle (FocusCircle) where
+import           Days.Day9.Circle (Circle (..))
 
-module Days.Day9.FocusCircle (singletonFC, FocusCircle) where
-
-import           Data.Sequence    (Seq)
-import qualified Data.Sequence    as Seq
-import           Days.Day9.Circle (Circle (current, delete, insert, moveCurrent, singleton))
-
-data FocusCircle a = FC (Seq a) Int
+data FocusCircle a = FC [a] a [a]
 
 instance Circle FocusCircle where
   singleton :: a -> FocusCircle a
-  singleton = singletonFC
-  current :: FocusCircle a -> a
-  current = focus
-  moveCurrent :: Int -> FocusCircle a -> FocusCircle a
-  moveCurrent = moveFocus
-  insert :: a -> FocusCircle a -> FocusCircle a
-  insert = insertFC
-  delete :: FocusCircle a -> FocusCircle a
-  delete = deleteFC
+  singleton f = FC [] f []
+  focus :: FocusCircle a -> a
+  focus (FC _ f _) = f
+  moveFocus :: Int -> FocusCircle a -> FocusCircle a
+  moveFocus n c = iterate move c !! abs n
+    where
+      move = if n < 0 then moveLeft else moveRight
+  insert :: a -> FocusCircle a -> FocusCircle a -- Insert element to the right of focus
+  insert f' (FC ls f rs) = FC (f :ls) f' rs
+  remove :: FocusCircle a -> (a, FocusCircle a)
+  remove (FC ls f (r : rs)) = (f, FC ls r rs) -- Element to the right of focus becomes new focus
+  remove c@(FC _ _ [])      = remove $ balanceRight c
 
-singletonFC :: a -> FocusCircle a
-singletonFC x = FC (Seq.singleton x) 0
+balanceRight :: FocusCircle a -> FocusCircle a
+balanceRight (FC ls f rs) = FC lsBuffert f (rs ++ reverse ls')
+  where
+    (lsBuffert, ls') = if longerThan 10 ls
+      then splitAt 10 ls
+      else ([], ls)
 
-focus :: FocusCircle a -> a
-focus (FC xs focus') = Seq.index xs focus'
+longerThan :: Int -> [a] -> Bool
+longerThan _ []       = False
+longerThan 0 _        = True
+longerThan n (_ : xs) = longerThan (n - 1) xs
 
-moveFocus :: Int -> FocusCircle a -> FocusCircle a
-moveFocus n (FC xs focus') = FC xs ((focus' + n) `mod` Seq.length xs)
+balanceLeft :: FocusCircle a -> FocusCircle a
+balanceLeft (FC ls f rs) = FC (ls ++ reverse rs) f []
 
-insertFC :: a -> FocusCircle a -> FocusCircle a
-insertFC x (FC xs focus') = FC (Seq.insertAt focus' x xs) focus'
+moveLeft :: FocusCircle a -> FocusCircle a
+moveLeft c@(FC [] _ [])     = c -- Can't change focus in a circle with a single element.
+moveLeft (FC (l : ls) f rs) = FC ls l (f : rs)
+moveLeft c@(FC [] _ _)      = moveLeft $ balanceLeft c
 
-deleteFC :: FocusCircle a -> FocusCircle a
-deleteFC (FC xs focus') = FC (Seq.deleteAt focus' xs) focus'
+moveRight :: FocusCircle a -> FocusCircle a
+moveRight c@(FC [] _ [])     = c -- Can't change focus in a circle with a single element.
+moveRight (FC ls f (r : rs)) = FC (f : ls) r rs
+moveRight c@(FC _ _ [])      = moveRight $ balanceRight c
