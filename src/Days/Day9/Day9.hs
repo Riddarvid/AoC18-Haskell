@@ -1,15 +1,14 @@
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 {-# HLINT ignore "Use head" #-}
 module Days.Day9.Day9 (solve) where
-import           AoCUtils.Days            (Solver)
-import           Control.Monad.State      (State, execState, gets, modify)
-import           Data.Foldable            (traverse_)
-import           Data.IntMap              (IntMap)
-import qualified Data.IntMap              as IM
-import           Days.Day9.Circle         (Circle)
-import qualified Days.Day9.Circle         as C
-import           Days.Day9.FocusCircle    (FocusCircle)
-import           Days.Day9.SequenceCircle (SequenceCircle)
+import           AoCUtils.Days         (Solver)
+import           Control.Monad.State   (State, execState, gets, modify)
+import           Data.Foldable         (traverse_)
+import           Data.IntMap           (IntMap)
+import qualified Data.IntMap           as IM
+import           Days.Day9.Circle      (Circle)
+import qualified Days.Day9.Circle      as C
+import           Days.Day9.FocusCircle (FocusCircle)
 
 solve :: Solver
 solve input = (show part1, show part2)
